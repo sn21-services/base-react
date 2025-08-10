@@ -1,6 +1,6 @@
-import { BrowserRouter } from "react-router";
+import { BrowserRouter } from 'react-router';
 
-import RoutesApp from "@/routes/RoutesApp";
+import RoutesApp from '@/routes/RoutesApp';
 
 const App = () => {
   return (
