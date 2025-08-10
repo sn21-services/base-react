@@ -8,6 +8,8 @@ const DefaultLayout = () => {
         <Link to="/todo">Todo</Link>
       </header>
       <Outlet />
+
+      <footer>Footer</footer>
     </div>
   );
 };

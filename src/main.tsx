@@ -1,10 +1,15 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { ConfigProvider } from 'antd-mobile';
+import enUS from 'antd-mobile/es/locales/en-US';
+
 import './index.css';
 import App from './App.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <ConfigProvider locale={enUS}>
+      <App />
+    </ConfigProvider>
   </StrictMode>
 );
