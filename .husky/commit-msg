@@ -1,0 +1,37 @@
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+commit_msg_file=$1
+commit_msg=$(cat "$commit_msg_file")
+
+# Skip automatic commitment (merge, revert, PR, bump, submodule)
+if echo "$commit_msg" | grep -qE '^(Merge|Revert|Bump|Update submodule)'; then
+  exit 0
+fi
+if echo "$commit_msg" | grep -qE 'Pull request|Merge pull request|Merge branch'; then
+  exit 0
+fi
+if echo "$commit_msg" | grep -qE '^#'; then
+  exit 0
+fi
+
+# Regex: Rule commit
+PATTERN='^(fix|feat|enhance|docs|update|refactor|chore|release): .+'
+
+# ❌ Check commit message
+if ! echo "$commit_msg" | grep -qE "$PATTERN"; then
+  echo -e "${RED}✘ Invalid commit message!${NC}"
+  echo -e "${YELLOW}  Format:${NC} ${GREEN}fix|feat|enhance|docs|update|refactor|chore|release: message${NC}"
+  echo ""
+  echo -e "${YELLOW}  Your commit:${NC} $commit_msg"
+
+  # Highlight the incorrectly typed part
+  first_word=$(echo "$commit_msg" | awk '{print $1}')
+  if ! echo "$first_word" | grep -qE '^(fix|feat|enhance|docs|update|refactor|chore|release):'; then
+    echo -e "${RED}  ↳ Type '${first_word}' is not allowed!${NC}"
+  fi
+
+  exit 1
+fi
