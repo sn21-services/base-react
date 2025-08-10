@@ -1,10 +1,10 @@
-import { Suspense } from "react";
-import { useRoutes } from "react-router";
+import { lazy, Suspense } from 'react';
+import { useRoutes } from 'react-router';
 
-import { LIST_ROUTES } from "@/routes/routes.config";
-import DefaultLayout from "@/layouts/DefaultLayout";
-import type { RouteItemDef } from "@/types/routes.types";
-import NotFound from "@/components/NotFound/NotFound";
+import { LIST_ROUTES } from '@/routes/routes.config';
+import DefaultLayout from '@/layouts/DefaultLayout';
+import type { RouteItemDef } from '@/types/routes.types';
+const NotFound = lazy(() => import('@/components/NotFound/NotFound'));
 
 const createRoute = (route: RouteItemDef) => {
   const Layout = route.layout ?? DefaultLayout;

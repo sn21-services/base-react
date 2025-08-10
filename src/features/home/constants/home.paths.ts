@@ -1,3 +1,3 @@
 export const HomePathsEnum = {
-  HOME: "/",
+  HOME: '/',
 } as const;
