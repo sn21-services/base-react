@@ -5,11 +5,14 @@ import enUS from 'antd-mobile/es/locales/en-US';
 
 import './index.css';
 import App from './App.tsx';
+import ErrorBoundary from '@/components/ErrorBoundary/ErrorBoundary.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ConfigProvider locale={enUS}>
-      <App />
-    </ConfigProvider>
+    <ErrorBoundary>
+      <ConfigProvider locale={enUS}>
+        <App />
+      </ConfigProvider>
+    </ErrorBoundary>
   </StrictMode>
 );
